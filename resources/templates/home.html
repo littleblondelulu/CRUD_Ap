@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+    <style type="text/css">
+      div {
+      border: 0px;
+      display: inline-block;
+      }
+    </style>
+</head>
+<body>
+
+<div><form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form></div>
+<div>{{#name}} Welcome, {{name}}! Track your wine tastings here!{{/name}}</div>
+
+
+<h2>My Wine Collection</h2>
+<h5>Add a new wine to your list:</h5>
+<form action="/create" method="post">
+    <input type="text" placeholder="Add new wine" name="wineName" size="20" width="200"/>
+    <input type="text" placeholder="Rating(1-5)" name="rating" size="20" width="200"/>
+    <button type="Submit">Submit</button>
+</form>
+
+<p></p>
+
+<p></p>
+
+<ol>{{#wines}}
+    <div><li> {(wineName}} : {{rating}} Stars
+        </div><form action="/update-wine/{{id}}" method="get">
+        <input type="hidden" name="updateID" value={{id}}/> <a href="/?update/idNum={{id}}"></a>
+        <button type="submit">Update</button></form>
+
+    <div><form action="/delete" method="post">
+        <input type="hidden" name="deleteID" value={{id}}/> <a href="/?delete/id={{id}}"></a>
+        <button type="Delete">Delete</button></form>
+    </div>
+</li>
+{{/wines}}
+        </ol>
+
+
+</body>
+
+</html>
