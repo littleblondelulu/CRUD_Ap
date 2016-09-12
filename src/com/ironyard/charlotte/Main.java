@@ -128,24 +128,20 @@ public class Main {
         );
 
         Spark.get(
-                "/update-wine/:id",
+                "/update-entry/:id",
                 ((request, response) -> {
 
                     Session session = request.session();
                     String name = session.attribute("userName");
                     User user = users.get(name);
 
-                    int idNum = Integer.valueOf(request.params("updateID"));
+                    int idNum = Integer.valueOf(request.params("id"));
 
                     HashMap m = new HashMap();
 
                     m.put("id", idNum);
 
-                    m.put("name", user.name);
-
-                    m.put("wines", user.wines);
-
-                    return new ModelAndView(m, "/?update/idNum={{id}}");
+                    return new ModelAndView(m, "update.html");
 
                 }),
                 new MustacheTemplateEngine()
@@ -159,19 +155,22 @@ public class Main {
                 String name = session.attribute("userName");
                 User user = users.get(name);
 
-                int idNum = Integer.valueOf(request.queryParams("updateID"));
+                int idNum = Integer.valueOf(request.params("id"));
 
                 String wineName = request.queryParams("wineName");
                 String rating = request.queryParams("rating");
                 Wine updatedWine = new Wine(wineName, rating);
 
-                user.wines.set(idNum, updatedWine);
+                for(int i = 0; i < user.wines.size(); i++) {
+                    // find the wine at index i
+                    if(user.wines.get(i).getId() == idNum)
+                        user.wines.set(i, updatedWine);
 
-                response.redirect(request.headers("home.html"));
+                }
+
+                response.redirect("/");
                 return "";
-
             })
-
         );
 
     Spark.post(

@@ -9,7 +9,7 @@ public class Wine {
     private String wineName;
     private String rating;
     int id;
-    int idNum;
+    static int idNum = 0;
 
     ArrayList<Wine> wines = new ArrayList<>();
 

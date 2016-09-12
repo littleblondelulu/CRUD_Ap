@@ -8,22 +8,15 @@
     </style>
 </head>
 <body>
-<div>{{name}}</div>
-<div><form action="/logout" method="post">
-    <button type="submit">Logout</button>
-</form></div>
-{{/name}}
+    <h4>Submit updates to wine entry</h4>
 
-<h4>Submit updates to wine entry</h4>
+    <div>
+        <form action="/update-entry/{{id}}" method="post">
+            <input type="text" placeholder="Update wine" name="wineName" size="20" width="200"/>
+            <input type="text" placeholder="Update rating(1-5)" name="rating" size="20" width="200"/>
+            <button type="Submit">Submit</button>
+        </form>
+    </div>
 
-<div>
-    {{#wines}}
-    <form action="/update-entry/{{id}}" method="post">
-        <input type="text" placeholder="Update wine" name="wineName" size="20" width="200"/>
-        <input type="text" placeholder="Update rating(1-5)" name="rating" size="20" width="200"/><a href="/?update/idNum={{id}}"></a>
-        <input type="hidden" name="updateID" value={{id}}/>
-        <button type="Submit">Submit</button>
-    </form></div>
-    {{/wines}}
-    </body>
+</body>
 </html>
