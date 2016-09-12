@@ -174,15 +174,19 @@ public class Main {
         );
 
     Spark.post(
-            "/delete-wine/:id",
+            "/delete",
             ((request, response) -> {
                 Session session = request.session();
                 String name = session.attribute("userName");
                 User user = users.get(name);
 
-                int idNum = Integer.valueOf(request.params("deleteID"));
+                int idNum = Integer.valueOf(request.queryParams("deleteID"));
 
-                user.wines.remove(idNum);
+                for(int i = 0; i < user.wines.size(); i++){
+                    if(user.wines.get(i).getId() == idNum){
+                        user.wines.remove(i);
+                    }
+                }
 
                 response.redirect("/");
                 return "";
