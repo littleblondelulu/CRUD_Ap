@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by lindseyringwald on 9/3/16.
  */
 public class Wine {
-    private String nameWine;
+    private String wineName;
     private String rating;
     int id;
     int idNum;
@@ -14,18 +14,18 @@ public class Wine {
     ArrayList<Wine> wines = new ArrayList<>();
 
 
-    public Wine(String nameWine, String rating) {
-        this.nameWine = nameWine;
+    public Wine(String wineName, String rating) {
+        this.wineName = wineName;
         this.rating = rating;
         this.id = idNum++;
     }
 
-    public String getNameWine() {
-        return nameWine;
+    public String getWineName() {
+        return wineName;
     }
 
-    public void setNameWine(String nameWine) {
-        this.nameWine = nameWine;
+    public void setWineName(String wineName) {
+        this.wineName = wineName;
     }
 
     public String getRating() {
