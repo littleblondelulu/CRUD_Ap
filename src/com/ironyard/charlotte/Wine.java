@@ -9,15 +9,19 @@ public class Wine {
     private String wineName;
     private String rating;
     int id;
-    static int idNum = 0;
-
-    ArrayList<Wine> wines = new ArrayList<>();
-
+    User user;
 
     public Wine(String wineName, String rating) {
+//        this.userId = userId;
         this.wineName = wineName;
         this.rating = rating;
-        this.id = idNum++;
+    }
+
+
+    public Wine(String wineName, String rating, int id) {
+        this.wineName = wineName;
+        this.rating = rating;
+        this.id = id;
     }
 
     public String getWineName() {
@@ -44,12 +48,5 @@ public class Wine {
         this.id = id;
     }
 
-    public int getIdNum() {
-        return idNum;
-    }
-
-    public void setIdNum(int idNum) {
-        this.idNum = idNum;
-    }
 
 }
