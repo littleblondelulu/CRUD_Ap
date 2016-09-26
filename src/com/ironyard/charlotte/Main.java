@@ -19,6 +19,9 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         conn = DriverManager.getConnection("jdbc:h2:./main");
 
+        //Create a test for insertUser and selectUser.
+        //Create a test for insertEntry and selectEntry.
+
     Spark.init();
 
     Spark.get(
@@ -138,11 +141,6 @@ public class Main {
             updatedWine.setWineName(wineName);
             updatedWine.setRating(rating);
             insertWine(conn, updatedWine);
-//            for (int i = 0; i < user.wines.size(); i++) {
-                // find the wine at index i
-//                if (user.wines.get(i).getId() == idNum)
-//                    user.wines.set(i, updatedWine);
-//            }
 
             response.redirect("/");
             return "";
@@ -215,4 +213,20 @@ public class Main {
         }
         return null;
     }
+
+    public static void updateWine(Connection conn, Wine newWine) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("UPDATE wines set wineName = ?, rating = ? where id = ?");
+        stmt.setString(1, newWine.getWineName());
+        stmt.setString(2, newWine.getRating());
+        stmt.setInt(4, newWine.getId());
+        stmt.execute();
+    }
+
+    public static void deleteWine(Connection conn, int id) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM wines WHERE id = ?");
+        stmt.setInt(1, id);
+        stmt.execute();
+    }
+
 }
+
