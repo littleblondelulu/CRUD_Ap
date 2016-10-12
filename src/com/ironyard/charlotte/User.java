@@ -1,7 +1,7 @@
 package com.ironyard.charlotte;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by lindseyringwald on 9/3/16.
@@ -16,7 +16,7 @@ public class User {
         this.password = password;
     }
 
-    ArrayList<Wine> wines = new ArrayList<>();
+    List<Wine> wines = new ArrayList<>();
 
     public User(int id, String name, String password) {
         this.id = id;
